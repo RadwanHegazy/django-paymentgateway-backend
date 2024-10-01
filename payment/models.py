@@ -26,7 +26,7 @@ class Payment (models.Model) :
     datetime = models.DateTimeField(auto_now_add=True)
     exp_at = models.DateTimeField(null=True, blank=True)
 
-    card_number = models.BigIntegerField(null=True, blank=True)
+    card_number = models.CharField(max_length=19,null=True, blank=True)
     card_cvc = models.IntegerField(null=True, blank=True)
     card_exp = models.CharField(max_length=5, null=True, blank=True)
 

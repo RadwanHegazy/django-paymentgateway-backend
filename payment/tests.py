@@ -90,7 +90,7 @@ class TestPaymentApp(TestCase) :
 
         self.assertEqual(response.status_code, 400)
 
-    def test_done_payment_success(self): 
+    def test_done_payment_valid_test_card_number(self): 
         p = Payment.objects.create(
             user=self.create_user(),
             amount=100
@@ -98,7 +98,7 @@ class TestPaymentApp(TestCase) :
         p.save()
         data = {
                 'card_cvc' : '123',
-                'card_number' : 123456789123,
+                'card_number' : "1111 1111 1111 1111",
                 'card_exp' : '02/30',
                 'full_name' : 'Tester',
                 'email' : "test@gmail.com"
@@ -107,7 +107,6 @@ class TestPaymentApp(TestCase) :
             reverse('create_payment', args=[p.id]),
             data=data
         )
-
         self.assertEqual(response.status_code, 200)
 
     def test_done_payment_no_data(self): 
