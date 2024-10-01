@@ -46,6 +46,7 @@ THIRD_PARTY = [
 
 USER_DEFINE_APPS = [
     'users',
+    "payment",
 ]
 
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY + USER_DEFINE_APPS
