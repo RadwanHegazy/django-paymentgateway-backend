@@ -15,7 +15,7 @@ class CreatePayment (APIView) :
                 'message' : "payment not found"
             }, status=status.HTTP_404_NOT_FOUND)
 
-        if datetime.now() > payment.exp_at:
+        if datetime.now().timestamp() > payment.exp_at.timestamp():
             payment.delete()
             return Response({
                 'message' : "payment not found"
@@ -26,6 +26,8 @@ class CreatePayment (APIView) :
             sr.save()
             payment.is_done = True
             payment.save()
+            payment.user.balance += payment.amount
+            payment.user.save()
             return Response(status=status.HTTP_200_OK)
         return Response(sr.errors, status=status.HTTP_400_BAD_REQUEST)
 
