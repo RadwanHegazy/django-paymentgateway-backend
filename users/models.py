@@ -22,6 +22,7 @@ class User (AbstractUser) :
     last_name = None
     email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=225)
+    balance = models.FloatField(default=0.0, null=True, blank=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name']
 
