@@ -39,4 +39,9 @@ class ClientPaymentSerializer (serializers.ModelSerializer) :
 class OwnerPaymentSerializer (serializers.ModelSerializer) :
     class Meta:
         model = Payment
-        fields = ["id","amount","state","datetime",'full_name',"email"]
+        fields = ["id","amount","payment_state","datetime",'full_name',"email","is_done"]
+
+    def to_representation(self, instance:Payment):
+        data = super().to_representation(instance)
+        data['datetime'] = instance.datetime.date()
+        return data
