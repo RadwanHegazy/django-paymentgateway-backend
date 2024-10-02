@@ -7,7 +7,7 @@ class GetClientPayment (APIView) :
     
     def get(self, request, id) : 
         try : 
-            payment = Payment.objects.get(id=id, is_done=False)
+            payment = Payment.objects.get(id=id)
         except Payment.DoesNotExist:
             return Response({
                 'message' : 'payment not found'
